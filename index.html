@@ -1,173 +1,89 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>مانهوا ~-~</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
+const listSection = document.getElementById('list-section');
+const detailsSection = document.getElementById('details-section');
+const detailsTitle = document.getElementById('details-title');
+const detailsDesc = document.getElementById('details-desc');
+const chaptersContainer = document.getElementById('chapters-container');
+const backBtn = document.getElementById('back-btn');
 
-    body {
-      margin: 0;
-      font-family: 'Cairo', sans-serif;
-      background-color: #fff0f6;
-      color: #333;
-    }
-    header {
-      background: linear-gradient(90deg, #ff77a9, #ff4d81);
-      display: flex;
-      align-items: center;
-      padding: 10px 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      color: white;
-      font-weight: 700;
-      font-size: 24px;
-      user-select: none;
-      text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
-    }
-    .logo img {
-      width: 40px;
-      height: 40px;
-      margin-left: 10px;
-      object-fit: contain;
-      border-radius: 8px;
-      background-color: white;
-      padding: 3px;
-    }
-    nav {
-      margin-right: auto;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      margin: 0;
-      padding: 0;
-    }
-    nav ul li {
-      margin-left: 25px;
-    }
-    nav ul li a {
-      text-decoration: none;
-      color: white;
-      font-weight: 600;
-      font-size: 18px;
-      transition: color 0.3s ease;
-    }
-    nav ul li a:hover {
-      color: #ffccd9;
-    }
-    main {
-      max-width: 1000px;
-      margin: 20px auto;
-      padding: 0 15px;
-    }
-    h1 {
-      text-align: center;
-      color: #ff4d81;
-      margin-bottom: 30px;
-      text-shadow: 1px 1px 2px #ff77a9;
-    }
-    .manhwa-card {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(255, 77, 129, 0.2);
-      padding: 20px;
-      margin-bottom: 25px;
-      cursor: pointer;
-      transition: box-shadow 0.3s ease;
-    }
-    .manhwa-card:hover {
-      box-shadow: 0 8px 15px rgba(255, 77, 129, 0.4);
-    }
-    .manhwa-title {
-      font-size: 22px;
-      font-weight: 700;
-      color: #ff4d81;
-      margin-bottom: 10px;
-    }
-    .manhwa-desc {
-      font-size: 16px;
-      color: #666;
-      line-height: 1.5;
-    }
-    .manhwa-img {
-      max-width: 100%;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      border: 3px solid #ff4d81;
-    }
-    /* صفحة التفاصيل */
-    #details-section {
-      display: none;
-    }
-    #back-btn {
-      margin-bottom: 15px;
-      background: #ff77a9;
-      border: none;
-      color: white;
-      padding: 8px 15px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-    .chapter-title {
-      font-weight: 700;
-      margin: 20px 0 10px 0;
-      color: #ff4d81;
-    }
-    .chapter-images img {
-      width: 100%;
-      max-width: 600px;
-      margin-bottom: 10px;
-      border-radius: 8px;
-      border: 2px solid #ff4d81;
-    }
-  </style>
-</head>
-<body>
+// نفترض عندك ملف manhwa-data.js يعرف مصفوفة manhwas
+// مثال مصغر ل manhwas لو تبي:
+const manhwas = [
+  {
+    id: 1,
+    title: "مانهوا الغموض",
+    description: "قصة مليانة أحداث مشوقة وغموض.",
+    cover: "https://i.imgur.com/O6qhzAc.jpg",
+    chapters: [
+      { number: 1, images: ["https://i.imgur.com/a1.jpg", "https://i.imgur.com/a2.jpg"] },
+      { number: 2, images: ["https://i.imgur.com/b1.jpg", "https://i.imgur.com/b2.jpg"] },
+    ],
+  },
+  {
+    id: 2,
+    title: "مانهوا المغامرات",
+    description: "رحلة بطلنا في عالم مليان مغامرات خطيرة.",
+    cover: "https://i.imgur.com/RkjTt7T.jpg",
+    chapters: [
+      { number: 1, images: ["https://i.imgur.com/c1.jpg", "https://i.imgur.com/c2.jpg"] },
+    ],
+  },
+];
 
-<header>
-  <div class="logo">
-    مانهوا ~-~
-    <img src="logo-cat.png" alt="شعار القط" />
-  </div>
-  <nav>
-    <ul>
-      <li><a href="#">الرئيسية</a></li>
-      <li><a href="#">مانهوا جديدة</a></li>
-      <li><a href="#">الأكثر قراءة</a></li>
-      <li><a href="#">تواصل معنا</a></li>
-    </ul>
-  </nav>
-</header>
+// دالة تعرض قائمة المانهوا
+function showList() {
+  detailsSection.style.display = 'none';
+  listSection.style.display = 'block';
+  listSection.innerHTML = '';
 
-<main>
-  <h1>أفضل مانهوا للقراءة</h1>
+  manhwas.forEach(manhwa => {
+    const card = document.createElement('div');
+    card.className = 'manhwa-card';
 
-  <section id="list-section">
-    <!-- هنا راح تظهر قائمة المانهوا -->
-  </section>
+    card.innerHTML = `
+      <img src="${manhwa.cover}" alt="${manhwa.title}" class="manhwa-img" />
+      <h3 class="manhwa-title">${manhwa.title}</h3>
+      <p class="manhwa-desc">${manhwa.description}</p>
+    `;
 
-  <section id="details-section">
-    <button id="back-btn">رجوع</button>
-    <h2 id="details-title"></h2>
-    <p id="details-desc"></p>
-    <div id="chapters-container"></div>
-  </section>
-</main>
+    card.addEventListener('click', () => showDetails(manhwa.id));
+    listSection.appendChild(card);
+  });
+}
 
-<script src="manhwa-data.js"></script>
-<script>
-  const listSection = document.getElementById('list-section');
-  const detailsSection = document.getElementById('details-section');
-  const detailsTitle = document.getElementById('details-title');
-  const detailsDesc = document.getElementById('details-desc');
-  const chaptersContainer
+// دالة تعرض تفاصيل المانهوا وفصولها
+function showDetails(id) {
+  const manhwa = manhwas.find(m => m.id === id);
+  if (!manhwa) return;
+
+  listSection.style.display = 'none';
+  detailsSection.style.display = 'block';
+
+  detailsTitle.textContent = manhwa.title;
+  detailsDesc.textContent = manhwa.description;
+
+  chaptersContainer.innerHTML = '';
+
+  manhwa.chapters.forEach(chap => {
+    const chapTitle = document.createElement('h3');
+    chapTitle.className = 'chapter-title';
+    chapTitle.textContent = `الفصل ${chap.number}`;
+    chaptersContainer.appendChild(chapTitle);
+
+    const chapImages = document.createElement('div');
+    chapImages.className = 'chapter-images';
+
+    chap.images.forEach(img => {
+      const image = document.createElement('img');
+      image.src = img;
+      image.alt = `صفحة من الفصل ${chap.number}`;
+      chapImages.appendChild(image);
+    });
+
+    chaptersContainer.appendChild(chapImages);
+  });
+}
+
+backBtn.addEventListener('click', showList);
+
+// بدايةً عرض القائمة
+showList();
