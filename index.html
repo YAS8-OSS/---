@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>مانهوا ~-~</title>
+  <style>
+    /* الخط */
+    @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background-color: #fff0f6; /* وردي فاتح */
+      color: #333;
+    }
+
+    /* القائمة العليا */
+    header {
+      background: linear-gradient(90deg, #ff77a9, #ff4d81);
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    /* الشعار */
+    .logo {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      color: white;
+      font-weight: 700;
+      font-size: 24px;
+      user-select: none;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+      margin-left: 10px;
+      object-fit: contain;
+      border-radius: 8px;
+      background-color: white;
+      padding: 3px;
+    }
+
+    /* قائمة الروابط */
+    nav {
+      margin-right: auto;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      margin-left: 25px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      font-size: 18px;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #ffccd9;
+    }
+
+    /* محتوى الصفحة */
+    main {
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ff4d81;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 2px #ff77a9;
+    }
+
+    /* بطاقة عرض المانهوا */
+    .manhwa-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(255, 77, 129, 0.2);
+      padding: 20px;
+      margin-bottom: 25px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .manhwa-card:hover {
+      box-shadow: 0 8px 15px rgba(255, 77, 129, 0.4);
+    }
+
+    .manhwa-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #ff4d81;
+      margin-bottom: 10px;
+    }
+
+    .manhwa-desc {
+      font-size: 16px;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    /* صورة المانهوا */
+    .manhwa-img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      border: 3px solid #ff4d81;
+    }
+
+    /* الفوتر */
+    footer {
+      text-align: center;
+      padding: 15px 10px;
+      color: #ff4d81;
+      font-weight: 600;
+      margin-top: 40px;
+      border-top: 1px solid #ffccd9;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    مانهوا ~-~
+    <!-- حطي رابط صورتك هنا -->
+    <img src="logo-cat.png" alt="شعار القط" />
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#">الرئيسية</a></li>
+      <li><a href="#">مانهوا جديدة</a></li>
+      <li><a href="#">الأكثر قراءة</a></li>
+      <li><a href="#">تواصل معنا</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <h1>أفضل مانهوا للقراءة</h1>
+
+  <section class="manhwa-card">
+    <img class="manhwa-img" src="https://i.imgur.com/O6qhzAc.jpg" alt="مانهوا مثال" />
+    <h2 class="manhwa-title">مانهوا بعنوان مثال</h2>
+    <p class="manhwa-desc">
+      قصة رائعة عن عالم خيالي مليء بالمغامرات، استمتع بقراءة هذه المانهوا الشيقة مع تحديثات دورية.
+    </p>
+  </section>
+
+  <section class="manhwa-card">
+    <img class="manhwa-img" src="https://i.imgur.com/RkjTt7T.jpg" alt="مانهوا مثال 2" />
+    <h2 class="manhwa-title">مانهوا بعنوان ثاني</h2>
+    <p class="manhwa-desc">
+      قصة مثيرة تحكي عن بطل يتحدى المصاعب ليصل إلى هدفه، مناسب لمحبي الأكشن والدراما.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  &copy; 2025 مانهوا ~-~. جميع الحقوق محفوظة.
+</footer>
+
+</body>
+</html>
